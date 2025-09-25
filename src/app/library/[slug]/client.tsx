@@ -31,7 +31,6 @@ interface ContentItem {
   contentType: string
   price: number
   thumbnail?: string
-  preview?: string
   videoUrl?: string
   pdfFile?: string
   audioFile?: string
@@ -91,9 +90,6 @@ export default function ContentDetailClient({ content }: { content: ContentItem 
   }
 
   const Icon = contentTypeIcons[content.contentType as keyof typeof contentTypeIcons] || FileText
-
-  // Get the display image
-  const displayImage = content.preview || content.thumbnail
 
   return (
     <div className="min-h-screen bg-white">
@@ -155,10 +151,10 @@ export default function ContentDetailClient({ content }: { content: ContentItem 
 
             {/* Preview or Content Area */}
             <Card className="overflow-hidden border-beige-dark">
-              {displayImage ? (
+              {content.thumbnail ? (
                 <div className="relative aspect-video">
                   <Image
-                    src={displayImage}
+                    src={content.thumbnail}
                     alt={content.title}
                     fill
                     className="object-cover"

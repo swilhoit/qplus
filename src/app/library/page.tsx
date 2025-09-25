@@ -29,7 +29,6 @@ async function getContent() {
       price,
       isFeatured,
       "thumbnail": thumbnail.asset->url,
-      preview,
       "category": category->title,
       "categorySlug": category->slug.current
     }
@@ -64,7 +63,7 @@ export default async function LibraryPage() {
               alt="Q+ Library"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              style={{ height: '40px', width: 'auto' }}
             />
           </Link>
           <nav className="space-x-6">
@@ -122,13 +121,15 @@ export default async function LibraryPage() {
 
                     return (
                       <Card key={item._id} className="hover:shadow-xl transition-all duration-300 relative border-beige-dark">
-                        {(item.preview || item.thumbnail) && (
-                          <div className="relative h-48 w-full">
+                        {item.thumbnail && (
+                          <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
                             <Image
-                              src={item.preview || item.thumbnail}
+                              src={item.thumbnail}
                               alt={item.title}
                               fill
-                              className="object-cover rounded-t-lg"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              priority={category.items.indexOf(item) === 0 && categories.indexOf(category) === 0}
+                              className="object-cover"
                             />
                             <div className="absolute top-2 right-2 bg-white/95 rounded-full p-2 shadow-md">
                               <Icon className="h-4 w-4 text-forest" />

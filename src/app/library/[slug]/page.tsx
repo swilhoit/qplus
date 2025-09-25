@@ -13,7 +13,6 @@ async function getContentItem(slug: string) {
       price,
       isFeatured,
       "thumbnail": thumbnail.asset->url,
-      preview,
       videoUrl,
       "pdfFile": pdfFile.asset->url,
       "audioFile": audioFile.asset->url,
