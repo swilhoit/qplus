@@ -25,7 +25,13 @@
       "Bash(curl:*)",
       "Bash(pkill:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(npx sanity:*)",
+      "Bash(lsof:*)",
+      "Bash(npm run seed:*)"
     ],
     "deny": [],
     "ask": []
