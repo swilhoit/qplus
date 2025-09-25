@@ -39,7 +39,9 @@
       "Bash(GIT_TRACE=1 GIT_CURL_VERBOSE=1 git push -u origin main)",
       "Bash(node:*)",
       "Bash(gh auth:*)",
-      "Bash(export SANITY_API_TOKEN=\"sknGopXI9V6fT0fO3At2jFMz4xtFIMAaeCiQvsL5hM9eLfNVaHbsMiraEWaWvfj3jfoK0Canc32mjxfxo3uho6u36ZyWjhuAgqm8NxriRQE2yBMEWxPYsogTECsDkH6P0YNOKzLMM7hPDxcmaH59i9Q8jBlFeUdGkNYHWzXFF7u4nrcSEyua\")"
+      "Bash(export SANITY_API_TOKEN=\"sknGopXI9V6fT0fO3At2jFMz4xtFIMAaeCiQvsL5hM9eLfNVaHbsMiraEWaWvfj3jfoK0Canc32mjxfxo3uho6u36ZyWjhuAgqm8NxriRQE2yBMEWxPYsogTECsDkH6P0YNOKzLMM7hPDxcmaH59i9Q8jBlFeUdGkNYHWzXFF7u4nrcSEyua\")",
+      "Bash(vercel:*)",
+      "Bash(npx vercel:*)"
     ],
     "deny": [],
     "ask": []

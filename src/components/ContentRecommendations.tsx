@@ -26,7 +26,6 @@ interface ContentItem {
   category: string
   contentType: string
   price: number
-  viewCount: number
   tags: string[]
   thumbnail?: string
   matchScore?: number
@@ -77,7 +76,6 @@ export function ContentRecommendations({
         category: "Risk & Safety Resources",
         contentType: "pdf",
         price: 20,
-        viewCount: 456,
         tags: ["safety", "events", "planning"],
         matchScore: 95,
         reason: "Based on your interest in event planning"
@@ -90,7 +88,6 @@ export function ContentRecommendations({
         category: "The Collective Conversation",
         contentType: "video",
         price: 35,
-        viewCount: 312,
         tags: ["leadership", "inclusion", "workshop"],
         matchScore: 88,
         reason: "Popular with similar users"
@@ -103,7 +100,6 @@ export function ContentRecommendations({
         category: "Organizational Tools & Templates",
         contentType: "template",
         price: 15,
-        viewCount: 289,
         tags: ["budget", "finance", "template"],
         matchScore: 82,
         reason: "Frequently downloaded together"
@@ -116,7 +112,6 @@ export function ContentRecommendations({
         category: "Risk & Safety Resources",
         contentType: "pdf",
         price: 25,
-        viewCount: 198,
         tags: ["crisis", "communication", "emergency"],
         matchScore: 78,
         reason: "New in your favorite category"
@@ -129,7 +124,6 @@ export function ContentRecommendations({
         category: "The Collective Conversation",
         contentType: "video",
         price: 20,
-        viewCount: 267,
         tags: ["community", "engagement", "growth"],
         matchScore: 75,
         reason: "Trending this week"
@@ -141,10 +135,9 @@ export function ContentRecommendations({
 
     switch (recommendationType) {
       case "trending":
-        filtered.sort((a, b) => b.viewCount - a.viewCount)
         filtered = filtered.map(item => ({
           ...item,
-          reason: `${item.viewCount} views this week`
+          reason: `Trending this week`
         }))
         break
       case "new":
@@ -277,7 +270,7 @@ export function ContentRecommendations({
                   key={item._id}
                   className="flex-shrink-0 w-72 group"
                 >
-                  <Card className="h-full hover:shadow-lg transition-shadow">
+                  <Card className="h-full">
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between mb-2">
                         <Icon className="h-5 w-5 text-primary" />
@@ -332,7 +325,7 @@ export function ContentRecommendations({
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 rounded-full bg-white shadow-lg"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 rounded-full bg-white border"
                 onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
                 disabled={currentIndex === 0}
               >
@@ -341,7 +334,7 @@ export function ContentRecommendations({
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 rounded-full bg-white shadow-lg"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 rounded-full bg-white border"
                 onClick={() => setCurrentIndex(Math.min(recommendations.length - 3, currentIndex + 1))}
                 disabled={currentIndex >= recommendations.length - 3}
               >

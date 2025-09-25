@@ -48,7 +48,6 @@ const mockContent = [
     price: 15,
     category: "Risk & Safety Resources",
     tags: ["safety", "planning", "events"],
-    viewCount: 234,
     isFeatured: true,
     publishedAt: "2024-01-15"
   },
@@ -61,7 +60,6 @@ const mockContent = [
     price: 25,
     category: "The Collective Conversation",
     tags: ["leadership", "workshop", "video"],
-    viewCount: 189,
     isFeatured: false,
     publishedAt: "2024-01-10"
   },
@@ -141,7 +139,8 @@ export default function EnhancedLibraryPage() {
         filtered.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
         break
       case "popular":
-        filtered.sort((a, b) => b.viewCount - a.viewCount)
+        // Sort by featured status or other metrics
+        filtered.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0))
         break
       case "price-low":
         filtered.sort((a, b) => a.price - b.price)
@@ -430,7 +429,7 @@ export default function EnhancedLibraryPage() {
               const Icon = contentTypes.find(t => t.value === item.contentType)?.icon || FileText
 
               return viewMode === "grid" ? (
-                <Card key={item._id} className="hover:shadow-lg transition-shadow">
+                <Card key={item._id} className="">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <Icon className="h-6 w-6 text-primary" />
@@ -456,7 +455,7 @@ export default function EnhancedLibraryPage() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card key={item._id} className="hover:shadow-lg transition-shadow">
+                <Card key={item._id} className="">
                   <CardContent className="flex items-center justify-between p-6">
                     <div className="flex items-center gap-4 flex-1">
                       <Icon className="h-8 w-8 text-primary shrink-0" />

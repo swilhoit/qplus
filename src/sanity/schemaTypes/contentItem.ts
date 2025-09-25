@@ -108,13 +108,6 @@ export const contentItem = defineType({
       },
     }),
     defineField({
-      name: 'viewCount',
-      title: 'View Count',
-      type: 'number',
-      readOnly: true,
-      initialValue: 0,
-    }),
-    defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',

@@ -211,7 +211,7 @@ export default function MyLibraryPage() {
                   const Icon = contentTypeIcons[item.type as keyof typeof contentTypeIcons] || FileText
 
                   return (
-                    <Card key={item.id} className="hover:shadow-lg transition-shadow">
+                    <Card key={item.id} className="">
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <Icon className="h-8 w-8 text-primary" />

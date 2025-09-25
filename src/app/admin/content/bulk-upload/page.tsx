@@ -119,7 +119,6 @@ export default function BulkUploadPage() {
         price: item.price,
         tags: item.tags,
         isFeatured: false,
-        viewCount: 0,
         publishedAt: new Date().toISOString()
       }
 

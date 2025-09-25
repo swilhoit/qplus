@@ -19,7 +19,6 @@ async function getContentItem(slug: string) {
       "category": category->title,
       "categorySlug": category->slug.current,
       tags,
-      viewCount,
       publishedAt
     }
   `, { slug })

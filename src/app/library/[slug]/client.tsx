@@ -35,7 +35,6 @@ interface ContentItem {
   pdfFile?: string
   audioFile?: string
   tags?: string[]
-  viewCount?: number
   publishedAt: string
   isFeatured?: boolean
 }
@@ -131,15 +130,6 @@ export default function ContentDetailClient({ content }: { content: ContentItem 
                   <Icon className="h-4 w-4" />
                   {content.contentType}
                 </span>
-                {content.viewCount && (
-                  <>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Eye className="h-4 w-4" />
-                      {content.viewCount} views
-                    </span>
-                  </>
-                )}
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-forest font-montserrat mb-4">
                 {content.title}
@@ -330,12 +320,6 @@ export default function ContentDetailClient({ content }: { content: ContentItem 
                   <span className="text-gray-600">Published</span>
                   <span>{new Date(content.publishedAt).toLocaleDateString()}</span>
                 </div>
-                {content.viewCount && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Views</span>
-                    <span>{content.viewCount}</span>
-                  </div>
-                )}
               </CardContent>
             </Card>
           </div>

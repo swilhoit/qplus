@@ -43,7 +43,6 @@ interface PreviewContent {
   tags: string[]
   duration?: string
   fileSize?: string
-  viewCount: number
   rating?: number
   preview?: {
     text?: string
@@ -292,10 +291,6 @@ export function ContentPreview({
             <TabsContent value="details" className="space-y-4 px-1">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Eye className="h-4 w-4 text-muted-foreground" />
-                    <span>{content.viewCount} views</span>
-                  </div>
                   {content.duration && (
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-4 w-4 text-muted-foreground" />

@@ -11,7 +11,6 @@ interface ContentItem {
   slug: { current: string }
   category: string
   contentType: string
-  viewCount: number
   publishedAt: string
 }
 
@@ -29,7 +28,6 @@ export default function RecentContent() {
             slug,
             "category": category->title,
             contentType,
-            viewCount,
             publishedAt
           }
         `)
@@ -80,7 +78,7 @@ export default function RecentContent() {
           <div>
             <p className="font-medium">{item.title}</p>
             <p className="text-sm text-gray-500">
-              {item.category} • {item.contentType} • {item.viewCount} views
+              {item.category} • {item.contentType}
             </p>
           </div>
           <Button variant="ghost" size="sm" asChild>
