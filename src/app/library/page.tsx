@@ -63,6 +63,7 @@ export default async function LibraryPage() {
               alt="Q+ Library"
               width={120}
               height={40}
+              priority
               style={{ height: '40px', width: 'auto' }}
             />
           </Link>
