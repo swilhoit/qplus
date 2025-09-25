@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx sanity init:*)",
+      "Bash(npx shadcn@latest init:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(npm run dev:*)",
+      "Bash(gcloud auth:*)",
+      "Bash(npx firebase:*)",
+      "WebFetch(domain:qpluscollective.com)",
+      "Bash(firebase login:*)",
+      "Read(//var/folders/5s/5zxcybks3gn9_7hrhzk5qm_h0000gn/T/TemporaryItems/NSIRD_screencaptureui_cmUK0q/**)",
+      "Bash(firebase apps:list:*)",
+      "Bash(firebase apps:create:*)",
+      "Bash(npx sanity@latest init:*)",
+      "Bash(npx sanity@latest projects:*)",
+      "Bash(npx sanity@latest:*)",
+      "Bash(firebase firestore:databases:create:*)",
+      "Bash(npm ls:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx sanity dataset import:*)",
+      "Bash(npx sanity documents query:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,103 +1,166 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Footer from "@/components/Footer"
+import Link from "next/link"
+import Image from "next/image"
+import { BookOpen, Shield, Users, Sparkles, ArrowRight } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen bg-white">
+      <header className="border-b border-beige-dark bg-white fixed w-full top-0 z-50">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <Link href="/" className="flex items-center">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/qplus_logo.svg"
+              alt="Q+ Library"
+              width={120}
+              height={40}
+              className="h-10 w-auto"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </Link>
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/library" className="text-sm font-semibold text-black hover:text-forest transition-colors">
+              Library
+            </Link>
+            <Link href="/pricing" className="text-sm font-semibold text-black hover:text-forest transition-colors">
+              Pricing
+            </Link>
+            <Link href="/about" className="text-sm font-semibold text-black hover:text-forest transition-colors">
+              About
+            </Link>
+            <Button asChild variant="outline" size="sm">
+              <Link href="/login">Sign In</Link>
+            </Button>
+          </nav>
         </div>
+      </header>
+
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="py-24 px-6 bg-beige-light">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center space-y-8 animate-fade-in">
+              <h1 className="text-5xl md:text-6xl font-bold text-forest font-montserrat leading-tight">
+                Q+ Library
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-montserrat">
+                Talks, trainings, and tips from queer leaders building the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Button asChild size="lg">
+                  <Link href="/library">
+                    <BookOpen className="mr-2 h-5 w-5" />
+                    Explore the Library
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/pricing">
+                    View Pricing
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-24 px-6 bg-white">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-black font-montserrat mb-4">
+                What's Inside
+              </h2>
+              <p className="text-lg text-gray-700 font-montserrat">
+                Curated resources for community organizers and leaders
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="group hover:shadow-xl transition-all duration-300">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-beige flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Shield className="h-8 w-8 text-forest" />
+                  </div>
+                  <CardTitle className="font-montserrat text-xl">Risk & Safety Resources</CardTitle>
+                  <CardDescription className="mt-2">
+                    Comprehensive guides and tools for creating safer spaces
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-muted-foreground space-y-2">
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Safety protocols</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Risk assessment tools</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Emergency planning guides</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl transition-all duration-300">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-beige flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <BookOpen className="h-8 w-8 text-forest" />
+                  </div>
+                  <CardTitle className="font-montserrat text-xl">Organizational Tools</CardTitle>
+                  <CardDescription className="mt-2">
+                    Ready-to-use resources for effective organizing
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-muted-foreground space-y-2">
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Event planning templates</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Communication frameworks</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Budget spreadsheets</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl transition-all duration-300">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-beige flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Users className="h-8 w-8 text-forest" />
+                  </div>
+                  <CardTitle className="font-montserrat text-xl">The Collective Conversation</CardTitle>
+                  <CardDescription className="mt-2">
+                    Insights and discussions from community leaders
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-muted-foreground space-y-2">
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Video interviews</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Panel discussions</li>
+                    <li className="flex items-center"><span className="text-forest mr-2">•</span> Community stories</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 px-6 bg-gradient-to-br from-primary/5 to-secondary/5">
+          <div className="container mx-auto max-w-4xl text-center">
+            <Sparkles className="h-12 w-12 text-primary mx-auto mb-6" />
+            <h3 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              Join Our Community
+            </h3>
+            <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+              Get instant access to all resources with a subscription, or purchase individual items that matter most to you
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="gradient-primary text-white hover:opacity-90 transition-opacity">
+                <Link href="/pricing">View Pricing Plans</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/library">Browse Free Previews</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <Footer />
     </div>
-  );
+  )
 }
