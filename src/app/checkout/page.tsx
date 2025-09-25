@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
@@ -13,7 +13,7 @@ const PRICE_IDS = {
   annual: process.env.NEXT_PUBLIC_STRIPE_PRICE_ANNUAL || 'price_annual',
 }
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams()
   const plan = searchParams.get('plan') as 'monthly' | 'annual' | null
   const contentId = searchParams.get('content')
@@ -157,5 +157,13 @@ export default function CheckoutPage() {
         </Card>
       </main>
     </div>
+  )
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutContent />
+    </Suspense>
   )
 }

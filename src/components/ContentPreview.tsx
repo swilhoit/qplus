@@ -205,10 +205,10 @@ export function ContentPreview({
                       alt={`Preview page ${i + 1}`}
                       className="w-full h-48 object-cover rounded-lg border"
                     />
-                    {i === 3 && content.preview.images!.length > 4 && (
+                    {i === 3 && content.preview?.images && content.preview.images.length > 4 && (
                       <div className="absolute inset-0 bg-black/60 rounded-lg flex items-center justify-center">
                         <p className="text-white font-semibold">
-                          +{content.preview.images!.length - 4} more pages
+                          +{content.preview.images.length - 4} more pages
                         </p>
                       </div>
                     )}

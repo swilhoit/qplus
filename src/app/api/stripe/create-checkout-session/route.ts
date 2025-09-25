@@ -38,6 +38,13 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe is not configured' },
+        { status: 500 }
+      )
+    }
+
     const session = await stripe.checkout.sessions.create(sessionConfig)
 
     return NextResponse.json({ sessionId: session.id, url: session.url })

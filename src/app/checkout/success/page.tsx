@@ -1,13 +1,13 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
   const [loading, setLoading] = useState(true)
@@ -58,11 +58,19 @@ export default function CheckoutSuccessPage() {
             </div>
 
             <p className="text-xs text-gray-500">
-              You'll receive a confirmation email shortly with your receipt and account details.
+              You&apos;ll receive a confirmation email shortly with your receipt and account details.
             </p>
           </CardContent>
         </Card>
       </main>
     </div>
+  )
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutSuccessContent />
+    </Suspense>
   )
 }

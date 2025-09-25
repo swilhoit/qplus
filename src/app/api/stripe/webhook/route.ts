@@ -10,12 +10,20 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text()
-    const signature = headers().get('stripe-signature') as string
+    const headersList = await headers()
+    const signature = headersList.get('stripe-signature') as string
 
     if (!signature) {
       return NextResponse.json(
         { error: 'No signature' },
         { status: 400 }
+      )
+    }
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe is not configured' },
+        { status: 500 }
       )
     }
 
@@ -145,7 +153,7 @@ async function handleSubscriptionUpdate(subscription: Stripe.Subscription) {
     subscriptionId: subscription.id,
     subscriptionStatus: status,
     subscriptionType,
-    currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+    currentPeriodEnd: new Date((subscription as any).current_period_end * 1000).toISOString(),
     updatedAt: new Date().toISOString(),
   })
 }
@@ -156,7 +164,7 @@ async function handleSubscriptionCancellation(subscription: Stripe.Subscription)
 
   await updateDoc(doc(db, 'users', userId), {
     subscriptionStatus: 'cancelled',
-    subscriptionEndDate: new Date(subscription.current_period_end * 1000).toISOString(),
+    subscriptionEndDate: new Date((subscription as any).current_period_end * 1000).toISOString(),
     updatedAt: new Date().toISOString(),
   })
 

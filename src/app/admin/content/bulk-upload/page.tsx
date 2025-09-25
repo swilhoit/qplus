@@ -125,9 +125,9 @@ export default function BulkUploadPage() {
 
       // Add file reference based on content type
       if (item.contentType === 'video' && item.videoUrl) {
-        doc.videoUrl = item.videoUrl
+        (doc as any).videoUrl = item.videoUrl
       } else if (item.contentType === 'audio' && fileAsset) {
-        doc.audioFile = {
+        (doc as any).audioFile = {
           _type: 'file',
           asset: {
             _type: 'reference',
@@ -135,7 +135,7 @@ export default function BulkUploadPage() {
           }
         }
       } else if (['pdf', 'template'].includes(item.contentType) && fileAsset) {
-        doc.pdfFile = {
+        (doc as any).pdfFile = {
           _type: 'file',
           asset: {
             _type: 'reference',

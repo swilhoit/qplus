@@ -281,7 +281,7 @@ export async function sendEmail(
   data: any
 ) {
   try {
-    const emailContent = emailTemplates[template](...Object.values(data))
+    const emailContent = (emailTemplates as any)[template](...Object.values(data))
 
     const mailOptions = {
       from: emailConfig.from,

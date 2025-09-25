@@ -94,7 +94,7 @@ export default function PromoCodesPage() {
       usageCount: 0,
       isActive: true,
     }
-    setPromos([...promos, promo])
+    setPromos([...promos, promo as any])
     setIsCreateDialogOpen(false)
     // TODO: Save to Firestore
     resetNewPromo()

@@ -48,9 +48,30 @@ const contentTypeIcons = {
 export default async function LibraryPage() {
   const [categories, content] = await Promise.all([getCategories(), getContent()])
 
-  const contentByCategory = categories.map((category: any) => ({
+  interface Category {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    description?: string;
+    icon?: string;
+  }
+
+  interface ContentItem {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    description: string;
+    contentType: string;
+    price: number;
+    isFeatured: boolean;
+    thumbnail?: string;
+    category: string;
+    categorySlug: string;
+  }
+
+  const contentByCategory = categories.map((category: Category) => ({
     ...category,
-    items: content.filter((item: any) => item.categorySlug === category.slug?.current)
+    items: content.filter((item: ContentItem) => item.categorySlug === category.slug?.current)
   }))
 
   return (
@@ -88,12 +109,12 @@ export default async function LibraryPage() {
             <CardHeader>
               <CardTitle>Content Coming Soon</CardTitle>
               <CardDescription>
-                We're preparing amazing resources for you. Check back soon!
+                We&apos;re preparing amazing resources for you. Check back soon!
               </CardDescription>
             </CardHeader>
           </Card>
         ) : (
-          contentByCategory.map((category: any) => (
+          contentByCategory.map((category: Category & { items: ContentItem[] }) => (
             <section key={category._id} className="mb-12">
               <div className="flex items-center gap-3 mb-6">
                 {category.icon && (
@@ -117,7 +138,7 @@ export default async function LibraryPage() {
                 <p className="text-gray-600 italic font-montserrat">No content in this category yet</p>
               ) : (
                 <div className="grid md:grid-cols-3 gap-6">
-                  {category.items.map((item: any) => {
+                  {category.items.map((item: ContentItem) => {
                     const Icon = contentTypeIcons[item.contentType as keyof typeof contentTypeIcons] || FileText
 
                     return (

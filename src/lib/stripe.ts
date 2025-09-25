@@ -5,7 +5,7 @@ export const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2025-08-27.basil',
     })
-  : null as any
+  : null as Stripe | null
 
 export const getStripeJs = async () => {
   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
